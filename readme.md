@@ -199,6 +199,8 @@ Conecta o Metabase no schema `gold` do banco `lab01` e acessa os marts gerados p
 2. Score médio de ansiedade por gênero
 3. Horas de sono vs score de felicidade
 
+![METABASE](docs/print3.png)
+
 ---
 
 ## Dificuldades Encontradas
