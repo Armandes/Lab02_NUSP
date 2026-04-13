@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: stg_gaming_mental_health
+    description: "Staging da tabela de gaming e saúde mental"
+    columns:
+      - name: player_id
+        description: "Chave única gerada por surrogate key"
+        data_tests:
+          - unique
+          - not_null
+
+      - name: gender
+        description: "Gênero do jogador"
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['Male', 'Female', 'Other']
+
+      - name: daily_gaming_hours
+        description: "Horas de jogo diárias"
+        data_tests:
+          - not_null
+
+      - name: anxiety_score
+        description: "Score de ansiedade (0-10)"
+        data_tests:
+          - not_null
+
+      - name: depression_score
+        description: "Score de depressão (0-10)"
+        data_tests:
+          - not_null

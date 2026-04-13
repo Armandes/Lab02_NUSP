@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: mart_saude_mental
+    description: "Mart com métricas de saúde mental dos jogadores, incluindo classificação de horas de jogo."
+    columns:
+      - name: player_id
+        description: "Chave única do jogador"
+        data_tests:
+          - unique
+          - not_null
+      - name: faixa_horas_jogo
+        description: "Classificação das horas de jogo diárias em faixas"
+      - name: anxiety_score
+        description: "Score de ansiedade (0-10)"
+      - name: depression_score
+        description: "Score de depressão (0-10)"
+      - name: happiness_score
+        description: "Score de felicidade (0-10)"
+      - name: addiction_level
+        description: "Nível de vício em jogos (0-10)"
+
+  - name: mart_perfil_jogador
+    description: "Mart com perfil demográfico e hábitos dos jogadores."
+    columns:
+      - name: player_id
+        description: "Chave única do jogador"
+        data_tests:
+          - unique
+          - not_null
+      - name: gender
+        description: "Gênero do jogador"
+      - name: age
+        description: "Idade do jogador"
+      - name: daily_gaming_hours
+        description: "Horas de jogo por dia"
+      - name: sleep_hours
+        description: "Horas de sono por dia"
