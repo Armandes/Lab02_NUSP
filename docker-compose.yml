@@ -2,39 +2,26 @@ services:
 
   postgres:
     image: postgres:15
-    container_name: lab01_postgres
+    container_name: lab02_postgres
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: lab01
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
     networks:
-      - lab01_network
+      - lab02_network
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
       interval: 10s
       timeout: 5s
       retries: 5
 
-  pipeline:
-    build: .
-    container_name: lab01_pipeline
-    depends_on:
-      postgres:
-        condition: service_healthy
-    environment:
-      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/lab01
-    volumes:
-      - ./data:/app/data
-    networks:
-      - lab01_network
-
   metabase:
     image: metabase/metabase:latest
-    container_name: lab01_metabase
+    container_name: lab02_metabase
     ports:
       - "3000:3000"
     volumes:
@@ -46,10 +33,23 @@ services:
       postgres:
         condition: service_healthy
     networks:
-      - lab01_network
+      - lab02_network
+
+  pipeline:
+    build: .
+    container_name: lab02_pipeline
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://lab02:lab02@postgres:5432/lab01
+    volumes:
+      - ./data:/app/data
+    networks:
+      - lab02_network
 
 networks:
-  lab01_network:
+  lab02_network:
     driver: bridge
 
 volumes:

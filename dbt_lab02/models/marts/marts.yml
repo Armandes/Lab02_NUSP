@@ -9,6 +9,9 @@ models:
         data_tests:
           - unique
           - not_null
+          - relationships:
+              to: ref('stg_gaming_mental_health')
+              field: player_id
       - name: faixa_horas_jogo
         description: "Classificação das horas de jogo diárias em faixas"
       - name: anxiety_score
@@ -28,6 +31,9 @@ models:
         data_tests:
           - unique
           - not_null
+          - relationships:
+              to: ref('stg_gaming_mental_health')
+              field: player_id
       - name: gender
         description: "Gênero do jogador"
       - name: age
